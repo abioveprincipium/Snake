@@ -21,7 +21,8 @@ private:
     Field board[20][20];
     int width;
     int height;
-    std:: vector<Snake> Snake_Head;
+    std::vector<Snake> Snake_Head;
+    Snake Head_poss;
 public:
     SnakeBoard(int width, int height);
     void update();

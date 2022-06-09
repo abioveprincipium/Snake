@@ -4,6 +4,8 @@
 SnakeBoard::SnakeBoard(int width, int height){
     width = width;
     height = height;
+    Head_poss = {width/2,height/2};
+    Snake_Head.push_back(Head_poss);
 }
 void SnakeBoard::clear_board() {
     for(int row=0;row<width;row++){
@@ -31,12 +33,26 @@ void SnakeBoard::debug_display(int width, int height) {
 
     std::cout<<std::endl;
     for(int row=0;row<height;row++){
+        std::cout<<"_ ";
+    }
+    std::cout<<std::endl;
+    for(int row=0;row<height;row++){
         for(int col=0;col<width;col++){
-            std::cout<<"[";
+            for(size_t t=0; t<Snake_Head.size();t++){
 
-            std::cout<<"]";
+                     if((Snake_Head.back().Head_X==Snake_Head[t].Head_X)&&(Snake_Head.back().Head_Y==Snake_Head[t].Head_Y)){
+                        if(Snake_Head.back().Head_X == row && Snake_Head[t].Head_Y==col){
+                            std::cout<<"O";
+                        }
+                     }
+                     else{if(Snake_Head[t].Head_X==row && Snake_Head[t].Head_Y)std::cout<<"o";}
+                }
         }
         std::cout<<std::endl;
+    }
+    for(int col=0;col<width;col++){
+        std::cout<<"_ ";
+
     }
 
 }
