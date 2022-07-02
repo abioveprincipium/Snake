@@ -13,9 +13,15 @@ void SnakeBoard::clear_board() {
            board[row][col]={0,0};
     }
     way_bf = RIGHT;
-    way_af = RIGHT;
-
+    state = RUNNING;
     // energy balls for snake
+}
+bool SnakeBoard::OnBoard()const {
+    if (Snake_Head.back().Head_X <= 0 && Snake_Head.back().Head_Y<=0){
+        if(Snake_Head.back().Head_X > height && Snake_Head.back().Head_Y >  width){
+            return true;
+        } else return false;
+    } else return false;
 }
 bool SnakeBoard::turn_Left(){
     if(way_bf==RIGHT)way_bf=TOP;
@@ -30,7 +36,32 @@ bool SnakeBoard::turn_Right() {
     else if(way_bf==TOP)way_bf=LEFT;
 }
 void SnakeBoard::update() {
-    
+    if(OnBoard() != true){state=FINISHED;}
+}
+void SnakeBoard::snake_len(){              //CHECK AGAIN
+    if(way_bf==RIGHT){
+        Head_poss={Snake_Head.back().Head_X+1,Snake_Head.back().Head_Y};
+        Snake_Head.push_back(Head_poss);
+    }
+    else if(way_bf==TOP){
+        Head_poss={Snake_Head.back().Head_X,Snake_Head.back().Head_Y+1};
+        Snake_Head.push_back(Head_poss);
+    }
+    else if(way_bf==LEFT){
+        Head_poss={Snake_Head.back().Head_X-1,Snake_Head.back().Head_Y};
+        Snake_Head.push_back(Head_poss);
+    }
+    else if(way_bf==BOTTOM){
+        Head_poss={Snake_Head.back().Head_X,Snake_Head.back().Head_Y-1};
+        Snake_Head.push_back(Head_poss);
+    }
+    else Snake_Head.erase(Snake_Head.begin());
+}
+GameState SnakeBoard::getGameState() const {
+    return state;
+}
+SnakeCrawl SnakeBoard::getSnakeWay() const {
+    return way_bf;
 }
 void SnakeBoard::debug_display(int width, int height) {
 

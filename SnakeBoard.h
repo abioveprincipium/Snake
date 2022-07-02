@@ -3,7 +3,7 @@
 #include <vector>
 
 enum GameMode{EASY, MEDIUM, HARD};
-enum GameState{RUNNING, FINISH_LOSS};
+enum GameState{RUNNING, FINISHED};
 enum SnakeCrawl{TOP, RIGHT, BOTTOM, LEFT};
 
 struct Field{
@@ -25,10 +25,11 @@ private:
     std::vector<Snake> Snake_Head;
     Snake Head_poss;
     SnakeCrawl way_bf;
-    SnakeCrawl way_af;
+    GameState state;
 public:
     SnakeBoard();
     SnakeBoard(int width, int height);
+    bool OnBoard()const;
     void update();
     bool turn_Left();
     bool turn_Right();
