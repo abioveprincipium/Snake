@@ -8,6 +8,7 @@ SnakeSFML::SnakeSFML(SnakeBoard &board): board(board) {
 
     Head = sf::CircleShape(7);Head.setFillColor(sf::Color::White);
     Tail = sf::CircleShape(7);Tail.setFillColor(sf::Color::Yellow);
+    EneryBall = sf::CircleShape(7);EneryBall.setFillColor(sf::Color::Red);
 }
 void SnakeSFML::draw(sf::RenderWindow &widow) {
     int h =20;
@@ -21,6 +22,7 @@ void SnakeSFML::draw(sf::RenderWindow &widow) {
             Board.setPosition(x,y);widow.draw(Board);
             if(board.getFieldInfo(row,col)=='O')Head.setPosition(x+3,y+3);widow.draw(Head);
             if(board.getFieldInfo(row,col)=='o')Tail.setPosition(x+3,y+3);widow.draw(Tail);
+            if(board.getFieldInfo(row,col)=='E')EneryBall.setPosition(x,y);widow.draw(EneryBall);
         }
     }
 

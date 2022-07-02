@@ -14,6 +14,8 @@ SnakeBoard::SnakeBoard(int width, int height){
     Head_poss = {height/2,width/2-1};
     Snake_Head.push_back(Head_poss);
 
+    int score=0;
+    putEnergy();
 }
 //void SnakeBoard::clear_board() {
 //    for(int row=0;row<width;row++){
@@ -96,7 +98,10 @@ void SnakeBoard::snake_len(){
         Tail_x=Snake_Head.back().Head_X;
         Tail_y=Snake_Head.back().Head_Y-1;
     }
-   Snake_Head.erase(Snake_Head.begin());
+    if((Snake_Head.back().Head_X == energy.En_X)&&Snake_Head.back().Head_Y == energy.En_Y){
+        putEnergy(); SnakeBoard::score++;
+    }
+    Snake_Head.erase(Snake_Head.begin());
 
     Head_poss={Tail_x,Tail_y};
     Snake_Head.push_back(Head_poss);
@@ -109,7 +114,9 @@ SnakeCrawl SnakeBoard::getSnakeWay() const {
 }
 char SnakeBoard::getFieldInfo(int row, int col) {
     if(col>=width||row>=height||col<0||row<0){return '#';}
+
     if((Snake_Head.back().Head_X == row) && (Snake_Head.back().Head_Y == col)){return 'O';}
+    else if(energy.En_X == row && energy.En_X == col){return 'E';}
     else {
         for (size_t t = 0; t < Snake_Head.size(); ++t) {
             if (Snake_Head[t].Head_X == row && Snake_Head[t].Head_Y == col) { return 'o'; }
@@ -120,6 +127,9 @@ char SnakeBoard::getFieldInfo(int row, int col) {
 int SnakeBoard::Movement(int rate) {
 
     return rate;
+}
+int SnakeBoard::IncreaseScore(){
+    return score;
 }
 void SnakeBoard::debug_display() {
 
@@ -150,4 +160,7 @@ void SnakeBoard::debug_display() {
     }
 
 }
-
+void SnakeBoard::putEnergy() {
+    energy.En_X = rand()%height;
+    energy.En_Y = rand()%width;
+}

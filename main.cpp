@@ -14,9 +14,6 @@ int main() {
     int W_H = 20*20.5;
 
     sf::RenderWindow widow(sf::VideoMode(W_W,W_H), "SNAKE GAME");
-    widow.setVerticalSyncEnabled(false);
-    srand(time(NULL));
-
 
     while(SnakeBoard.getGameState()==RUNNING){
         SnakeBoard.snake_len();

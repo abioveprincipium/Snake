@@ -8,6 +8,7 @@ class SnakeSFML {
     sf::CircleShape Head;
     sf::CircleShape Tail;
     sf::RectangleShape Board;
+    sf::CircleShape EneryBall;
 public:
     explicit SnakeSFML(SnakeBoard & board);
     void draw(sf::RenderWindow & widow);

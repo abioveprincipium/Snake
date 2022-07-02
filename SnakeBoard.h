@@ -12,17 +12,19 @@ enum SnakeCrawl{TOP, RIGHT, BOTTOM, LEFT};
 struct Snake{
    int Head_X;
    int Head_Y;
-  // int Tail_X;
-   //int Tail_Y;
+    int En_X;
+   int En_Y;
 };
 class SnakeBoard {
 private:
     int width;
     int height;
+    int score;
     std::vector<Snake> Snake_Head;
     Snake Head_poss;
     SnakeCrawl way_bf;
     GameState state;
+    Snake energy;
 public:
     SnakeBoard();
     SnakeBoard(int width, int height);
@@ -40,6 +42,9 @@ public:
     void WSAD();//for text play
     int Movement(int rate);
     SnakeCrawl getSnakeWay()const;
+
+    void putEnergy();
+    int IncreaseScore();
 };
 
 
