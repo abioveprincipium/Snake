@@ -12,20 +12,23 @@ void SnakeBoard::clear_board() {
         for(int col=0;col<height;col++)
            board[row][col]={0,0};
     }
+    way_bf = RIGHT;
+    way_af = RIGHT;
 
+    // energy balls for snake
 }
-//bool SnakeBoard::turn_Left(){
-//    for(int row=0;row<100;row++){
-//        for(int col=0;col<100;col++)
-//            if((board[row-1][col].Snake_bd==1)||(board[row][col-1].Snake_bd==1)){return true;}
-//    }
-//}
-//bool SnakeBoard::turn_Right() {
-//    for(int row=0;row<100;row++){
-//        for(int col=0;col<100;col++)
-//            if((board[row+1][col]).Snake_bd==1||(board[row][col+1]).Snake_bd==1){return true;}
-//    }
-//}
+bool SnakeBoard::turn_Left(){
+    if(way_bf==RIGHT)way_bf=TOP;
+    else if(way_bf==TOP)way_bf=LEFT;
+    else if(way_bf==LEFT)way_bf=BOTTOM;
+    else if(way_bf==BOTTOM)way_bf=RIGHT;
+}
+bool SnakeBoard::turn_Right() {
+    if(way_bf==RIGHT)way_bf=BOTTOM;
+    else if(way_bf==BOTTOM)way_bf=LEFT;
+    else if(way_bf==LEFT)way_bf=TOP;
+    else if(way_bf==TOP)way_bf=LEFT;
+}
 void SnakeBoard::update() {
     
 }

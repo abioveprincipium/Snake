@@ -4,6 +4,7 @@
 
 enum GameMode{EASY, MEDIUM, HARD};
 enum GameState{RUNNING, FINISH_LOSS};
+enum SnakeCrawl{TOP, RIGHT, BOTTOM, LEFT};
 
 struct Field{
     bool energy;
@@ -23,14 +24,19 @@ private:
     int height;
     std::vector<Snake> Snake_Head;
     Snake Head_poss;
+    SnakeCrawl way_bf;
+    SnakeCrawl way_af;
 public:
+    SnakeBoard();
     SnakeBoard(int width, int height);
     void update();
     bool turn_Left();
     bool turn_Right();
+    GameState getGameState() const;
     void debug_display(int width, int height);
     void clear_board();
     void snake_len();
+    SnakeCrawl getSnakeWay()const;
 };
 
 
